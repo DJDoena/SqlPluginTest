@@ -1,7 +1,7 @@
 ﻿using DatabaseLayer.Models;
 
-using var context = new DatabaseContext();
+var plugin = new Plugin.Plugin();
 
-var list = context.Tables.ToList();
+plugin.Do();
 
 Console.ReadLine();

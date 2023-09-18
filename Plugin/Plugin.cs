@@ -2,6 +2,7 @@
 using PluginInterface;
 
 namespace Plugin;
+
 public class Plugin : IPlugin
 {
     public void Do()
