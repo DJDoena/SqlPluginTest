@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseLayer\DatabaseLayer.csproj" />
+    <ProjectReference Include="..\PluginInterface\PluginInterface.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set targetDir=..\PluginHost\bin\$(Configuration)\$(TargetFramework)&#xD;&#xA;md %25targetDir%25&#xD;&#xA;set sourceDir=bin\$(Configuration)\$(TargetFramework)&#xD;&#xA;robocopy.exe %25sourceDir%25 %25targetDir%25 /s&#xD;&#xA;IF %25ERRORLEVEL%25 LSS 8 exit 0" />
+  </Target>
+
+</Project>
