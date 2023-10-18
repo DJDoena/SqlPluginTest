@@ -1,6 +1,4 @@
-﻿using DatabaseLayer.Models;
-
-var plugin = new Plugin.Plugin();
+﻿var plugin = new Plugin.Plugin();
 
 plugin.Do();
 
