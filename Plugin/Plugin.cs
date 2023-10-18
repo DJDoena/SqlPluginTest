@@ -10,5 +10,7 @@ public class Plugin : IPlugin
         using var context = new DatabaseContext();
 
         var list = context.Tables.ToList();
+
+        Console.WriteLine(list.Count);
     }
 }

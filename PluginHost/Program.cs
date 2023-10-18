@@ -1,7 +1,16 @@
 ﻿using System.Reflection;
+using McMaster.NETCore.Plugins;
 using PluginInterface;
 
-var assembly = Assembly.LoadFrom("Plugin.dll");
+var currentPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+var pluginPath = Path.Combine(currentPath, "Plugin.dll");
+
+var loader = PluginLoader.CreateFromAssemblyFile(
+    assemblyFile: pluginPath,
+    sharedTypes: new[] { typeof(IPlugin) });
+
+var assembly = loader.LoadDefaultAssembly();
 
 var pluginType = assembly.GetExportedTypes()
     .Where(t => t.IsAssignableTo(typeof(IPlugin)))
